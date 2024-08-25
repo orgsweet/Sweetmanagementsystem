@@ -1,6 +1,6 @@
 package najah;
 import java.util.logging.Logger;
-import java.util.logging.Level;
+
 
 public class Admin {
     private static final Logger logger = Logger.getLogger(Admin.class.getName());
