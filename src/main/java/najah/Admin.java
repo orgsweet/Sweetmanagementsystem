@@ -1,6 +1,9 @@
-package najah;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class Admin {
+    private static final Logger logger = Logger.getLogger(Admin.class.getName());
+    
     private String username;
     private String password;
     private boolean isLoggedIn;
@@ -18,11 +21,11 @@ public class Admin {
             this.username = username;
             this.password = password;
             this.isLoggedIn = true;
-            System.out.println("Admin logged in successfully!");
+            logger.info("Admin logged in successfully!");
             return true;
         } else {
             this.isLoggedIn = false;
-            System.out.println("Login failed. Incorrect username or password.");
+            logger.warning("Login failed. Incorrect username or password.");
             return false;
         }
     }
@@ -36,9 +39,9 @@ public class Admin {
     public void logout() {
         if (this.isLoggedIn) {
             this.isLoggedIn = false;
-            System.out.println("Admin logged out successfully.");
+            logger.info("Admin logged out successfully.");
         } else {
-            System.out.println("Admin is not logged in.");
+            logger.warning("Admin is not logged in.");
         }
     }
 
@@ -61,10 +64,10 @@ public class Admin {
     public boolean changePassword(String oldPassword, String newPassword) {
         if (authenticate(this.username, oldPassword)) {
             this.password = newPassword;
-            System.out.println("Password changed successfully.");
+            logger.info("Password changed successfully.");
             return true;
         } else {
-            System.out.println("Password change failed. Old password is incorrect.");
+            logger.warning("Password change failed. Old password is incorrect.");
             return false;
         }
     }
@@ -75,10 +78,10 @@ public class Admin {
 
         if (this.username.equals(username) && secretAnswer.equals(expectedSecretAnswer)) {
             this.password = newPassword;
-            System.out.println("Password reset successfully.");
+            logger.info("Password reset successfully.");
             return true;
         } else {
-            System.out.println("Password reset failed. Username or secret answer is incorrect.");
+            logger.warning("Password reset failed. Username or secret answer is incorrect.");
             return false;
         }
     }
@@ -87,11 +90,11 @@ public class Admin {
     public boolean deleteUser(User user) {
         if (this.isLoggedIn) {
             // Simulate deletion of a user
-            System.out.println("User " + user.getUsername() + " has been deleted.");
+            logger.info("User " + user.getUsername() + " has been deleted.");
             // Assuming successful deletion
             return true;
         } else {
-            System.out.println("Admin must be logged in to delete users.");
+            logger.warning("Admin must be logged in to delete users.");
             return false;
         }
     }
@@ -100,10 +103,10 @@ public class Admin {
     public void viewSystemLogs() {
         if (this.isLoggedIn) {
             // Simulate log retrieval
-            System.out.println("Displaying system logs...");
+            logger.info("Displaying system logs...");
             // Logs might be printed, saved to a file, or otherwise displayed.
         } else {
-            System.out.println("Admin must be logged in to view system logs.");
+            logger.warning("Admin must be logged in to view system logs.");
         }
     }
 }
